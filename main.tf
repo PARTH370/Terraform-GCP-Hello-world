@@ -1,7 +1,7 @@
 provider "google" {
   credentials = file("cred.json")
-  project     = "sacred-tenure-428408-q8"
-  region      = "us-central1"
+  project     = var.project_id
+  region      = var.region
 }
 
 resource "google_project_service" "cloud_resource_manager" {
@@ -14,7 +14,7 @@ resource "google_project_service" "artifact_registry" {
 }
 
 resource "google_storage_bucket" "docker_registry" {
-  name          = "sacred-tenure-428408-q8-docker-registry"
+  name          = var.project_id + "-docker-registry"
   location      = "US"
   force_destroy = true
 }
